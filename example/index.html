@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <title>Demo</title>
+        <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+        <script src="https://demo.probtn.com/button_example/ua-parser.pack.js"></script>
+        <style>
+            body {
+                padding: 0;
+                margin: 0;
+            }
+        </style>
+    </head>
+    <body>
+
+        <script>
+            $(document).ready(function () {
+                var parser = new UAParser();
+                var device = parser.getDevice();
+                console.log(device);
+                switch (device.type) {
+                    case "mobile":
+                        $("#bg").attr("src", "https://demo.probtn.com/all-site-backgrounds/template-landing-mobile-3.jpg");
+                        break;
+                    default:
+                        $("#bg").attr("src", "https://demo.probtn.com/all-site-backgrounds/template-landing-desktop-3.jpg");
+                        break;
+                }
+            })            
+        </script>
+        <img id="bg" src="" style="width:  100%; margin:  0px;" alt="Demo"/>
+
+        <script>
+            $(document).ready(function () {
+                $.getScript('//demo.probtn.com/probtn.js?r=123', function () { 
+                    $(document).StartButton({
+                        'mainStyleCss': '//demo.probtn.com/style.css',
+						'domain': 'demo.probtn.com',
+						'CreativeId': '5a01c890e73e39e246000022',
+						'ButtonImage': 'http://192.168.137.96:3000/button2/nokia-gyroscope.html'
+                    });
+                });
+            });
+    </script>
+    </body>
+</html>

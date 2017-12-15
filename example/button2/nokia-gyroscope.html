@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+  <head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="chrome=1,IE=edge" />
+	<title>nokia-gyroscope</title>
+	<style>
+		html {
+			height:100%;
+		}
+		body {
+			margin:0;
+			height:100%;
+		}
+	</style>
+	<!-- copy these lines to your document head: -->
+
+	<meta name="viewport" content="user-scalable=yes, width=200" />
+
+	<!-- end copy -->
+  </head>
+  <body>
+	<!-- copy these lines to your document: -->
+
+	<div id="nokiagyroscope_hype_container" style="margin:auto;position:relative;width:200px;height:200px;overflow:hidden;">
+		<script type="text/javascript" charset="utf-8" src="nokia-gyroscope.hyperesources/nokiagyroscope_hype_generated_script.js?59308"></script>
+	</div>
+
+	<!-- end copy -->
+	
+
+
+	<!-- text content for search engines: -->
+
+	<div style="display:none" aria-hidden=true>
+
+		<div></div>
+
+	</div>
+
+	<!-- end text content: -->
+	<script src="./nokia-gyroscope.hyperesources/orientcontrollib.js"></script>
+	<script>
+        function randomInteger(min, max) {
+            var rand = min + Math.random() * (max - min)
+            rand = Math.round(rand);
+            return rand;
+        }
+
+        var hypeDocument = null;
+        var scene5 = false;
+		function CreateObj(maxAngle, minAngle, callback, isLast)
+		{
+			this.maxAngle = maxAngle;
+			this.minAngle = minAngle;
+			this.callback = callback;
+			this.isLast = isLast;
+		};
+
+		var params = [];
+		params.push(new CreateObj(0, -5, function(){hypeDocument.showSceneNamed("scene-1")}, false));
+		params.push(new CreateObj(-5, -10, function(){hypeDocument.showSceneNamed("scene-2")}, false));
+		params.push(new CreateObj(-10, -15, function(){hypeDocument.showSceneNamed("scene-3")}, false));
+		params.push(new CreateObj(-15, -20, function(){hypeDocument.showSceneNamed("scene-4")}, false));
+		params.push(new CreateObj(-20, -25, function(){hypeDocument.showSceneNamed("scene-5")}, false));
+		params.push(new CreateObj(-25, -30, function(){hypeDocument.showSceneNamed("scene-6")}, false));
+		params.push(new CreateObj(-30, -35, function(){hypeDocument.showSceneNamed("scene-7")}, false));
+		params.push(new CreateObj(-35, -90, function(){hypeDocument.showSceneNamed("scene-8")}, true));
+		var test = OrientControl(params);
+       /* window.addEventListener("message", receiveMessage, false);
+
+        function receiveMessage(event) {
+            if ((event.data !== null) && (event.data !== undefined)) {
+                console.log(event.data);
+                if ((event.data.message === "probtn_page_deviceorientation") && (hypeDocument !== null)) {
+                    if (!scene5) {
+                        checkOrientation(event.data.dataEvent.gamma);
+                    }
+                }
+            }
+        }
+
+        function checkOrientation(orient) {
+            console.log("checkOrientation", hypeDocument);
+            //orient = Math.abs(orient);
+            console.log("orient", orient);
+            if ((orient <= 0) && (orient > -5)) {
+                hypeDocument.showSceneNamed("scene-1");
+            }5
+            if ((orient <= -5) && (orient > -10)) {
+                hypeDocument.showSceneNamed("scene-2");
+            }
+            if ((orient <= -10) && (orient > -15)) {
+                hypeDocument.showSceneNamed("scene-3");
+            }
+            if ((orient <= -15) && (orient > -20)) {
+                hypeDocument.showSceneNamed("scene-4");
+            }
+            if ((orient <= -20) && (orient > -25)) {
+                hypeDocument.showSceneNamed("scene-5");
+            }
+            if ((orient <= -25) && (orient > -30)) {
+                hypeDocument.showSceneNamed("scene-6");
+            }
+            if ((orient <= -30) && (orient > -35)) {
+                hypeDocument.showSceneNamed("scene-7");
+            }
+            if ((orient <= -35)) {
+                if (!scene5) {
+                    scene5 = true;
+                    hypeDocument.showSceneNamed("scene-8");
+                }
+            }
+        }*/
+
+        function MyFunctions(hypeDocument_local, element, event) {
+            console.log("element", element);
+            console.log("event", event);
+            console.log("hypeDocument.documentName()", hypeDocument_local.documentName());
+
+            console.log("hypeDocument.sceneNames()", hypeDocument_local.sceneNames());
+
+            hypeDocument = hypeDocument_local;
+        }
+        if ("HYPE_eventListeners" in window === false) {
+            window.HYPE_eventListeners = Array();
+        }
+        window.HYPE_eventListeners.push({
+            "type": "HypeSceneLoad",
+            "callback": MyFunctions
+        });
+        </script>
+
+  </body>
+</html>
