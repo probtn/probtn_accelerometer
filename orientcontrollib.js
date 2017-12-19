@@ -17,8 +17,8 @@ function OrientControl(params) {
 	{
 			params.forEach(function(elem)
 			{
-				if ((elem.maxAngle != undefined) || (elem.maxAngle != null) || (elem.minAngle != undefined) ||
-		 			(elem.minAngle != null))
+				if ((elem.maxAngle !== undefined) || (elem.maxAngle !== null) || (elem.minAngle !== undefined) ||
+		 			(elem.minAngle !== null))
 					{
 						orientParams.push(elem);
 					}
@@ -30,22 +30,21 @@ function OrientControl(params) {
 	 * @param  {[type]} gamma [description]
 	 * @return {[type]}       [description]
 	 */
-	var checkOrientation = function(gamma)
-	{
-		orientParams.forEach(function(item)
-		{
-			if	((item.maxAngle > gamma) && (gamma > item.minAngle))
-			{
-				console.log("item", item, gamma);
-					if (item.isLast === true) {
-						isLast = true;
-						alert("isLast");
-					}
-					if  ((item.callback != undefined) && (item.callback != null))
-						item.callback();
-			}	
-			
-		})
+	var checkOrientation = function (gamma) {
+	    orientParams.forEach(function (item) {
+	        if ((item.maxAngle > gamma) && (gamma >= item.minAngle)) {
+	            if (item.isLast === true) {
+	                isLast = true;
+	            }
+	            if ((item.callback !== undefined) && (item.callback !== null)) {
+	                item.callback();
+	            } else {
+	                console.log("no callback");
+	            }
+
+	        }
+
+	    })
 	};
 	
 	/**
