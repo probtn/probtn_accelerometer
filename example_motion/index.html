@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <title>Demo</title>
+        <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+        <style>
+            body {
+                padding: 0;
+                margin: 0;
+            }
+        </style>
+    </head>
+    <body>
+
+        <!-- Cuba -->
+        <img id="bg" src="" style="width:  100%; margin:  0px;" alt="Demo"/>
+        <script src="https://cdn.probtn.com/demos/all-site-backgrounds/bg-change.js"></script>
+
+        <!-- Antarctic -->
+        <!-- <img id="bg" src="" style="width:  100%; margin:  0px;" alt="Demo"/>
+        <script src="https://cdn.probtn.com/demos/all-site-backgrounds/bg-change-snow.js"></script> -->
+
+        <script>
+                $(document).ready(function () {
+                    $.getScript('//demo.probtn.com/probtn.js?r=11', function () {
+                        // //cdn.probtn.com/probtn.js
+                        $(document).StartButton({
+                        'mainStyleCss': '//probtnlandings1.azurewebsites.net/style.css',
+						'domain': 'demo.probtn.com',
+						'CreativeId': '5a391d7f0637fbe70b00000a',
+						'ButtonImage': 'localhost:3000/button/index.html'
+                        });
+                    });
+                });
+        </script>
+        
+    </body>
+</html>

@@ -27,7 +27,7 @@
 	</div>
 
 	<!-- end copy -->
-	
+
 
 
 	<!-- text content for search engines: -->
@@ -39,9 +39,10 @@
 	</div>
 
 	<!-- end text content: -->
-	<script src="../../orientcontrollib.js"></script>
-    
+	<!--<script src="orientcontrollib.js"></script> -->
+
 	<script>
+  /* window.onload = {
         function randomInteger(min, max) {
             var rand = min + Math.random() * (max - min)
             rand = Math.round(rand);
@@ -70,6 +71,78 @@
 		var test = OrientControl(params);
 
         function MyFunctions(hypeDocument_local, element, event) {
+            console.log("hypeDocument.documentName()", hypeDocument_local.documentName());
+
+            console.log("hypeDocument.sceneNames()", hypeDocument_local.sceneNames());
+
+            hypeDocument = hypeDocument_local;
+        }
+        if ("HYPE_eventListeners" in window === false) {
+            window.HYPE_eventListeners = Array();
+        }
+        window.HYPE_eventListeners.push({
+            "type": "HypeSceneLoad",
+            "callback": MyFunctions
+        });
+      };*/
+      function randomInteger(min, max) {
+            var rand = min + Math.random() * (max - min)
+            rand = Math.round(rand);
+            return rand;
+        }
+
+        var hypeDocument = null;
+        var scene5 = false;
+
+        window.addEventListener("message", receiveMessage, false);
+
+        function receiveMessage(event) {
+            if ((event.data !== null) && (event.data !== undefined)) {
+                console.log(event.data);
+                if ((event.data.message === "probtn_page_deviceorientation") && (hypeDocument !== null)) {
+                    if (!scene5) {
+                        checkOrientation(event.data.dataEvent.gamma);
+                    }
+                }
+            }
+        }
+
+        function checkOrientation(orient) {
+            console.log("checkOrientation", hypeDocument);
+            //orient = Math.abs(orient);
+            console.log("orient", orient);
+            if ((orient <= 0) && (orient > -5)) {
+                hypeDocument.showSceneNamed("scene-1");
+            }5
+            if ((orient <= -5) && (orient > -10)) {
+                hypeDocument.showSceneNamed("scene-2");
+            }
+            if ((orient <= -10) && (orient > -15)) {
+                hypeDocument.showSceneNamed("scene-3");
+            }
+            if ((orient <= -15) && (orient > -20)) {
+                hypeDocument.showSceneNamed("scene-4");
+            }
+            if ((orient <= -20) && (orient > -25)) {
+                hypeDocument.showSceneNamed("scene-5");
+            }
+            if ((orient <= -25) && (orient > -30)) {
+                hypeDocument.showSceneNamed("scene-6");
+            }
+            if ((orient <= -30) && (orient > -35)) {
+                hypeDocument.showSceneNamed("scene-7");
+            }
+            if ((orient <= -35)) {
+                if (!scene5) {
+                    scene5 = true;
+                    hypeDocument.showSceneNamed("scene-8");
+                }
+            }
+        }
+
+        function MyFunctions(hypeDocument_local, element, event) {
+            console.log("element", element);
+            console.log("event", event);
             console.log("hypeDocument.documentName()", hypeDocument_local.documentName());
 
             console.log("hypeDocument.sceneNames()", hypeDocument_local.sceneNames());
