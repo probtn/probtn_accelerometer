@@ -58,7 +58,7 @@ function OrientControl(params) {
 	 * [receiveMessage description]
 	 * @return {[type]} [description]
 	 */
-	var receiveMessage = function()
+	var receiveMessage = function(event)
 	{
 		if (isLast !== true) {
 			if ((event.data!==null) && (event.data!==undefined)) {
@@ -116,7 +116,9 @@ function MotionControl(param)
 									{						// motion process had started or continuing
                             _isShaking = true;
 														if (typeof _motionParams.motionStarted == "function")
-                            _motionParams.motionStarted();
+														{
+                            	_motionParams.motionStarted();
+														}
                   }
 
 									if ((change < _motionParams.motionSensitive) && (_isShaking))
@@ -144,7 +146,7 @@ function MotionControl(param)
 	 *
 	 * @return {type}  description
 	 */
-	var receiveMessage = function ()
+	var receiveMessage = function (event)
 	{
       if ((event.data!==null) && (event.data!==undefined)) {
       	if (event.data.message === "probtn_page_devicemotion") {
