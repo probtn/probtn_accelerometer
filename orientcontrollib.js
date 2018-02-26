@@ -161,3 +161,76 @@ function MotionControl(param)
 	addCorrectParams(param);
 	setInterval(processMotion, C_TIMER_INTERVAL);
 }
+
+/**
+ * ScreenTurnControl - description
+ *
+ * @return {null}  - if device's doen't support DeviceMotionEvent
+ */
+function ScreenTurnControl()
+{
+	if (!window.DeviceMotionEvent)
+	{
+		return null;
+	}
+	var self = this;
+	var C_PORTRAIT_PRIMARY = "portrait-primary";
+	var C_PORTRAIT_SECONDARY = "portrait-secondary";
+	var C_LANDSCAPE_PRIMARY = "landscape-primary";
+	var C_LANDSCAPE_SECONDARY = "landscape-secondary";
+	var C_TIMER_INTERVAL = 300;
+  var _x1 = 0, _y1 = 0, _x2 = 0, _y2 = 0;
+	var _isDataUpdated = false;
+	this.currentMode = undefined;
+
+	var _handleDeviceMotion = function(event)
+	{
+		_x1 = event.accelerationIncludingGravity.x;
+		_y1 = event.accelerationIncludingGravity.y;
+	}
+
+	var _processMotion = function()
+	{
+		if (_isDataUpdated)
+		{
+			var delta = Math.abs(_y1) - Math.abs(_x1);
+			if (delta > 0)
+			{
+				if (_y1 > 0)
+				{
+					self.currentMode = C_PORTRAIT_PRIMARY;
+				}
+				else {
+					self.currentMode = C_PORTRAIT_SECONDARY;
+				}
+			}
+			else {
+				if (_x1 > 0)
+				{
+					self.currentMode = C_LANDSCAPE_PRIMARY;
+				}
+				else {
+					self.currentMode = C_LANDSCAPE_SECONDARY;
+				}
+			}
+		}
+		_x2 = _x1;
+		_y2 = _y1;
+		_isDataUpdated = true;
+	}
+
+	/**
+	 * this method return current device orientation type
+	 *  @returns {string}  - "portrait-primary" : primary portrait orientation on Android/Tizen, secondary on iOS
+	 * (									 - "portrait-secondary" : primary portrait orientation on iOS, secondary on Android/Tizen
+	 * 										 - "landscape-primary" : primary landscape orientation on Android/Tizen, secondary on iOS
+	 * 										 - "landscape-secondary" : primary landscape orientation on iOS, secondary on Android/Tizen
+	 */
+	this.getOrientationType = function()
+	{
+		return self.currentMode;
+	}
+
+	window.addEventListener("devicemotion", _handleDeviceMotion, false);
+	setInterval(_processMotion, C_TIMER_INTERVAL);
+}
