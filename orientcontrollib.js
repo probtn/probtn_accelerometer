@@ -27,6 +27,7 @@ function OrientControl(params) {
 			});
 	};
 
+ var currentItem = null;
 	/**
 	 * [checkOrientation description]
 	 * @param  {[type]} gamma [description]
@@ -39,15 +40,21 @@ function OrientControl(params) {
 	            if (item.isLast === true) {
 	                isLast = true;
 	            }
-	            if ((item.callback !== undefined) && (item.callback !== null)) {
-									if (typeof item.callback == "function")
-									{
-	                		item.callback();
-									}
-	            } else {
-	                console.log("no callback");
-	            }
 
+							if (item !== currentItem)
+							{
+															
+			            if ((item.callback !== undefined) && (item.callback !== null)) {
+											if (typeof item.callback == "function")
+											{
+			                		item.callback();
+											}
+			            } else {
+			                console.log("no callback");
+			            }
+
+									currentItem = item;
+							}
 	        }
 
 	    })
